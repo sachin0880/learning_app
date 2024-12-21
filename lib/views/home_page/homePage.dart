@@ -22,7 +22,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         leading: Image(image: AssetImage('assets/images/menuicons.png'),),
-        title: Text("Hi, Ofspace",style: TextStyle(color: black,fontSize:size.titleFontsize ),),
+        title: Text("Hi, Yash",style: TextStyle(color: black,fontSize:size.titleFontsize ),),
         actions: [
           Container(
             padding: EdgeInsets.all(6),
