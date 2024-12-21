@@ -10,6 +10,7 @@ const Color red = Colors.red;
 const Color green = Color(0xffB5E4CA);
 const Color gray = Color(0xffEFEFEF);
 const Color darkgray = Color(0xff898D8F);
+const Color gold = Color(0xffFFB23A);
 
 //=================================================================
 
