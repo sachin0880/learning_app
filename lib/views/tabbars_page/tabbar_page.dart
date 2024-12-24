@@ -243,7 +243,7 @@ class _SearchPageState extends State<SearchPage> {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-        backgroundColor: oldwhite,
+
         body: Column(
           children: [
             Container(
@@ -272,17 +272,18 @@ class _SearchPageState extends State<SearchPage> {
                  Container(
                    margin: EdgeInsets.only(left: 20,right: 20),
                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(12),
-                   color: Colors.white60),
+                   color:  themeController.isDarkMode.value ? Colors.white:gray),
                    child: TextFormField(
                      decoration: InputDecoration(
-                       prefixIcon: Icon(Icons.search),
+                       prefixIcon: Icon(Icons.search,color: ,),
                        hintText: "Search",
+                       hintStyle: TextStyle(color: themeController.isDarkMode.value ? newprimaryColor:newprimaryColor),
                        border: InputBorder.none,
                        suffixIcon: GestureDetector(
                          child: Container(
                            margin: EdgeInsets.all(5),
                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(12),
-                           color: gold),
+                           color: themeController.isDarkMode.value ? newprimaryColor : newprimaryColor),
                            padding: EdgeInsets.all(7),
                            child: Icon(Icons.medication_liquid,color: white,),
                          ),
@@ -313,7 +314,7 @@ class _SearchPageState extends State<SearchPage> {
               child: TabBarView(
                 children: [
                   Container(
-                    color:oldwhite,
+
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: SingleChildScrollView(
                       child: Column(
@@ -321,8 +322,9 @@ class _SearchPageState extends State<SearchPage> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text("Results for Design",style: TextStyle(fontSize:size.titleFontsize ),),
-                              Text("153 Results Found",style: TextStyle(color: gold),),
+                              Text("Results for Design",style: TextStyle(fontSize:size.titleFontsize,  ),),
+
+                              Text("153 Results Found",style: TextStyle(color: themeController.isDarkMode.value ? Colors.white:gold),),
                             ],
                           ),
                           TabbarCustom(),
@@ -331,7 +333,7 @@ class _SearchPageState extends State<SearchPage> {
                     ), // Custom widget for Courses tab
                   ),
                   Container(
-                    color: oldwhite,
+
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: SingleChildScrollView(
                       child: Column(

@@ -40,6 +40,7 @@ class _CategoryState extends State<Category> {
       ),
       body: Column(
         children: [
+          SizedBox(height: 20,),
               Container( height: 600,
                 child: GridView.builder(
                     itemCount: categoryitem.length,

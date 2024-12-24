@@ -28,7 +28,7 @@ class _ItemTabbarListState extends State<ItemTabbarList> {
         return ListTile(
           leading: Container(
               decoration: BoxDecoration(shape: BoxShape.circle)
-              ,child: Image(image: AssetImage(listclassitem[index].img1),height: 90,)),
+              ,child: Image(image: AssetImage(listclassitem[index].img1),)),
               title: Text(listclassitem[index].tilte),
           subtitle: Text(listclassitem[index].subtitle),
           trailing:   Container(width: 100,
