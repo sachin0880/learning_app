@@ -57,9 +57,7 @@ class _SearchPageState extends State<SearchPage> {
                       scrollDirection: Axis.horizontal,
                       itemCount: categoriesList.length
                       ,itemBuilder: (BuildContext context ,index){
-                    return GestureDetector(onTap: (){
-                      setState((){}
-                    },)
+                    return GestureDetector(
                       child: Container(
                         margin: EdgeInsets.only(left: 5,right: 5),
                         padding: EdgeInsets.only(left: 10,right: 10,top: 10,bottom: 5),
