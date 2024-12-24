@@ -15,8 +15,15 @@ class SearchPage extends StatefulWidget {
 
 class _SearchPageState extends State<SearchPage> {
 
+  bool isDarkMode = false;
   List<String> categoriesList = [ "Art","Coding","Marketing","Buisness"];
   int listcolor =0;
+
+  List<String> categoriesList2 = [ "English","German","French","spanish"];
+  int listcolor2 =0;
+
+  List<String> categoriesList3 = [ "30 Minutes","60 Minutes","75 Minutes","90 Minutes"];
+  int listcolor3 =0;
 
  final List<String> btnlist =["Reset" , "Apply"];
  RangeValues values =RangeValues(0, 0);
@@ -34,130 +41,198 @@ class _SearchPageState extends State<SearchPage> {
       ,context: context, builder: (context){
     return StatefulBuilder(builder: (context, setState) {
       return Container(
-        height: MediaQuery.of(context).size.height*0.8,
+        height: MediaQuery.of(context).size.height*0.9,
         child: Padding(
           padding: const EdgeInsets.only(left: 10,right: 10),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: 5,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text("Filter",style: TextStyle(fontSize:size.titleFontsize,fontWeight: FontWeight.w800 ),)
-                ],),
-
-              SizedBox(height: 10,),
-              Text("Categories",style: TextStyle(fontSize:size.titleFontsize,fontWeight: FontWeight.w800 ),)
-
-              ,SizedBox(height: 10,)
-              , Container(
-                  height: 54,
-                  child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: categoriesList.length
-                      ,itemBuilder: (BuildContext context ,index){
-                    return GestureDetector(onTap: (){
-                      setState((){}
-                    },)
-                      child: Container(
-                        margin: EdgeInsets.only(left: 5,right: 5),
-                        padding: EdgeInsets.only(left: 10,right: 10,top: 10,bottom: 5),
-                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(32),
-                            color: (listcolor == categoriesList[index])? gold : Colors.red,
-                            border: Border.all(color: gold)),
-                        child: Text(categoriesList[index],style: TextStyle(fontSize:size.titleFontsize,fontWeight: FontWeight.w500,color: gold ),) ,
-                      ),
-                    );
-                  })
-              ),
-//================================================================
-              SizedBox(height: 15,),
-              Text("Price Range",style: TextStyle(fontSize:size.titleFontsize,fontWeight: FontWeight.w800 ),),
-
-              SizedBox(height: 5,),
-              RangeSlider(values: values,
-                activeColor: gold,inactiveColor: gray,
-                min: 0,max: 100,
-                onChanged: (value) {
-                  setState((){
-                    values = value;
-                  });
-                },),
-
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Text("\$20",style: TextStyle(fontSize:size.subtitleFontsize,fontWeight: FontWeight.w800 ),),
-                  Text("\$30",style: TextStyle(fontSize:size.subtitleFontsize,fontWeight: FontWeight.w800 ),),
-                  Text("\$40",style: TextStyle(fontSize:size.subtitleFontsize,fontWeight: FontWeight.w800 ),),
-                  Text("\$50",style: TextStyle(fontSize:size.subtitleFontsize,fontWeight: FontWeight.w800 ),),
-                  Text("\$60",style: TextStyle(fontSize:size.subtitleFontsize,fontWeight: FontWeight.w800 ),),
-                  Text("\$70",style: TextStyle(fontSize:size.subtitleFontsize,fontWeight: FontWeight.w800 ),),
-                ],
-              ),
-//======================================================================
-              SizedBox(height: 25,),
-              Text("Rating",style: TextStyle(fontSize:size.titleFontsize,fontWeight: FontWeight.w800 ),),
-
-              RangeSlider(values: values2,
-                activeColor: gold,inactiveColor: gray,
-                min: 0,max: 100,
-                onChanged: (value) {
-                setState((){
-                  values2 = value;
-                });
-
-              },),
-
-
-              Padding(
-                padding: const EdgeInsets.only(left: 20,right: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: 5,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("1.0",style: TextStyle(fontSize:size.subtitleFontsize,fontWeight: FontWeight.w800 ),),
-                    Text("5.0",style: TextStyle(fontSize:size.subtitleFontsize,fontWeight: FontWeight.w800 ),),
-                  ],
+                    Text("Filter",style: TextStyle(fontSize:size.titleFontsize,fontWeight: FontWeight.w800 ),)
+                  ],),
+            
+                SizedBox(height: 10,),
+                Text("Categories",style: TextStyle(fontSize:size.titleFontsize,fontWeight: FontWeight.w800 ),)
+            
+                ,SizedBox(height: 10,)
+                , Container(
+                    height: 54,
+                    child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: categoriesList.length
+                        ,itemBuilder: (BuildContext context ,index){
+                      return GestureDetector(onTap: (){
+                        setState((){
+                          listcolor = index;
+            
+                        });
+                      },
+                        child: Container(
+                          margin: EdgeInsets.only(left: 5,right: 5),
+                          padding: EdgeInsets.only(left: 10,right: 10,top: 10,bottom: 5),
+                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(32),
+                              color: (listcolor == index)? gold : Colors.transparent,
+                              border: Border.all(color: (listcolor==index)?Colors.transparent : gold)),
+                          child: Text(categoriesList[index],style: TextStyle(fontSize:size.titleFontsize,fontWeight: FontWeight.w500,
+                              color: (listcolor==index)? white : gold),) ,
+                        ),
+                      );
+                    })
                 ),
-              ),
-//===================================================================
-
-              SizedBox(height: 10,),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: Row(
+            //================================================================
+                SizedBox(height: 15,),
+                Text("Price Range",style: TextStyle(fontSize:size.titleFontsize,fontWeight: FontWeight.w800 ),),
+            
+                SizedBox(height: 5,),
+                RangeSlider(values: values,
+                  activeColor: gold,inactiveColor: gray,
+                  min: 0,max: 100,
+                  onChanged: (value) {
+                    setState((){
+                      values = value;
+                    });
+                  },),
+            
+                Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Expanded(child: Container(height: 60,width: MediaQuery.of(context).size.width,
-                      child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: btnlist.length,
-                          itemBuilder:(BuildContext context ,index){
-                            return GestureDetector(
-                              onTap: (){
-                                setState(() {
-                                  btncolor = index;
-                                  print(btncolor);
-                                });
-                              },
-                              child: Container( width: 160,
-                                margin: EdgeInsets.only(left: 10,right: 5),
-                                padding: EdgeInsets.only(left: 30,top: 10,bottom: 10,right: 30),
-                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(42),
-                                    color: (btncolor==index)?gold : Colors.transparent,
-                                border: Border.all(color: (btncolor==index)?Colors.transparent : gold)),
-                                child:Center(child: Text(btnlist[index],style: TextStyle(fontSize:size.subtitleFontsize,fontWeight: FontWeight.w800,
-                                color: (btncolor==index)?white : gold),)),
-                              ),
-                            );
-                          }),
-                    )),
+                    Text("\$20",style: TextStyle(fontSize:size.subtitleFontsize,fontWeight: FontWeight.w800 ),),
+                    Text("\$30",style: TextStyle(fontSize:size.subtitleFontsize,fontWeight: FontWeight.w800 ),),
+                    Text("\$40",style: TextStyle(fontSize:size.subtitleFontsize,fontWeight: FontWeight.w800 ),),
+                    Text("\$50",style: TextStyle(fontSize:size.subtitleFontsize,fontWeight: FontWeight.w800 ),),
+                    Text("\$60",style: TextStyle(fontSize:size.subtitleFontsize,fontWeight: FontWeight.w800 ),),
+                    Text("\$70",style: TextStyle(fontSize:size.subtitleFontsize,fontWeight: FontWeight.w800 ),),
+                  ],
+                ),
+            //======================================================================
+                SizedBox(height: 25,),
+                Text("Rating",style: TextStyle(fontSize:size.titleFontsize,fontWeight: FontWeight.w800 ),),
+            
+                RangeSlider(values: values2,
+                  activeColor: gold,inactiveColor: gray,
+                  min: 0,max: 100,
+                  onChanged: (value) {
+                  setState((){
+                    values2 = value;
+                  });
+            
+                },),
+            
+            
+                Padding(
+                  padding: const EdgeInsets.only(left: 20,right: 20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text("1.0",style: TextStyle(fontSize:size.subtitleFontsize,fontWeight: FontWeight.w800 ),),
+                      Text("5.0",style: TextStyle(fontSize:size.subtitleFontsize,fontWeight: FontWeight.w800 ),),
+                    ],
+                  ),
+                ),
+            //==================================================================
+                SizedBox(height: 20,),
+                Text("Language",style: TextStyle(fontSize:size.titleFontsize,fontWeight: FontWeight.w800 ),)
+            
+                ,SizedBox(height: 10,)
+                , Container(
+                    height: 54,
+                    child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: categoriesList2.length
+                        ,itemBuilder: (BuildContext context ,index){
+                      return GestureDetector(onTap: (){
+                        setState((){
+                          listcolor2 = index;
+            
+                        });
+                      },
+                        child: Container(
+                          margin: EdgeInsets.only(left: 5,right: 5),
+                          padding: EdgeInsets.only(left: 10,right: 10,top: 10,bottom: 5),
+                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(32),
+                              color: (listcolor2 == index)? gold : Colors.transparent,
+                              border: Border.all(color: (listcolor2==index)?Colors.transparent : gold)),
+                          child: Text(categoriesList2[index],style: TextStyle(fontSize:size.titleFontsize,fontWeight: FontWeight.w500,
+                              color: (listcolor2==index)? white : gold),) ,
+                        ),
+                      );
+                    })
+                ),
+            
+            //==================================================================
+                SizedBox(height: 20,),
+                Text("Course Duration",style: TextStyle(fontSize:size.titleFontsize,fontWeight: FontWeight.w800 ),)
+            
+                ,SizedBox(height: 10,)
+                , Container(
+                    height: 54,
+                    child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: categoriesList3.length
+                        ,itemBuilder: (BuildContext context ,index){
+                      return GestureDetector(onTap: (){
+                        setState((){
+                          listcolor3 = index;
+            
+                        });
+                      },
+                        child: Container(
+                          margin: EdgeInsets.only(left: 5,right: 5),
+                          padding: EdgeInsets.only(left: 10,right: 10,top: 10,bottom: 5),
+                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(32),
+                              color: (listcolor3 == index)? gold : Colors.transparent,
+                              border: Border.all(color: (listcolor3==index)?Colors.transparent : gold)),
+                          child: Text(categoriesList3[index],style: TextStyle(fontSize:size.titleFontsize,fontWeight: FontWeight.w500,
+                              color: (listcolor3==index)? white : gold),) ,
+                        ),
+                      );
+                    })
+                ),
+            
+            
+            
+            //===================================================================
+            
+                SizedBox(height: 40,),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Expanded(child: Container(height: 60,width: MediaQuery.of(context).size.width,
+                        child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: btnlist.length,
+                            itemBuilder:(BuildContext context ,index){
+                              return GestureDetector(
+                                onTap: (){
+                                  setState(() {
+                                    btncolor = index;
+                                    print(btncolor);
+                                  });
+                                },
+                                child: Container( width: 160,
+                                  margin: EdgeInsets.only(left: 5,right: 5),
+                                  padding: EdgeInsets.only(left: 30,top: 10,bottom: 10,right: 30),
+                                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(42),
+                                      color: (btncolor==index)?gold : Colors.transparent,
+                                  border: Border.all(color: (btncolor==index)?Colors.transparent : gold)),
+                                  child:Center(child: Text(btnlist[index],style: TextStyle(fontSize:size.subtitleFontsize,fontWeight: FontWeight.w800,
+                                  color: (btncolor==index)?white : gold),)),
+                                ),
+                              );
+                            }),
+                      )),
 
-                  ],),
-              )
-
-            ],
+                    ],),
+                )
+            
+              ],
+            ),
           ),
         ),
       );
@@ -186,6 +261,12 @@ class _SearchPageState extends State<SearchPage> {
                       },
                     ),
                     title: Text("Search",style: TextStyle(fontSize:size.titleFontsize,fontWeight: FontWeight.w500 ),),
+                  trailing: Switch(value: isDarkMode, onChanged: (bool value) {
+                    setState(() {
+                      isDarkMode = value;
+                    });
+                    themeController.setThemeMode(value);
+                  },),
                   ),
 
                  Container(
