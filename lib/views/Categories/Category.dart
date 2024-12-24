@@ -17,6 +17,18 @@ class _CategoryState extends State<Category> {
     Categorylist("assets/images/brush.png", "Art"),
     Categorylist("assets/images/brush.png", "Art"),
     Categorylist("assets/images/brush.png", "Art"),
+    Categorylist("assets/images/brush.png", "Art"),
+    Categorylist("assets/images/brush.png", "Art"),
+    Categorylist("assets/images/brush.png", "Art"),
+    Categorylist("assets/images/brush.png", "Art"),
+    Categorylist("assets/images/brush.png", "Art"),
+    Categorylist("assets/images/brush.png", "Art"),
+    Categorylist("assets/images/brush.png", "Art"),
+    Categorylist("assets/images/brush.png", "Art"),
+    Categorylist("assets/images/brush.png", "Art"),
+    Categorylist("assets/images/brush.png", "Art"),
+    Categorylist("assets/images/brush.png", "Art"),
+
   ];
   @override
   Widget build(BuildContext context) {
