@@ -10,9 +10,12 @@ const Color red = Colors.red;
 const Color green = Color(0xffB5E4CA);
 const Color gray = Color(0xffEFEFEF);
 const Color darkgray = Color(0xff898D8F);
-const Color gold = Color(0xffFFB23A);
+
 
 //=================================================================
 
 const Color newprimaryColor = Color(0xffF47375);
 const Color CarouselColor = Color(0xffED5A90);
+const Color gold = Color(0xffFFB23A);
+const Color ligthgold = Color(0xffFFF9E6);
+const Color oldwhite = Color(0xffF2F5F8);
