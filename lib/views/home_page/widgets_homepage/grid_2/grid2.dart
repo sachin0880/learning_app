@@ -52,7 +52,7 @@ class _CustomeGridview2State extends State<CustomeGridview2> {
                   contentPadding: EdgeInsets.zero
                   ,leading: Image(image: AssetImage(carouselitem[index].img3),height: 20,),
                   title: Text(carouselitem[index].Text3),
-                  trailing: Text("\$${carouselitem[index].Text4}",style: TextStyle(color: gold,
+                  trailing: Text("\$${carouselitem[index].Text4}",style: TextStyle(color: newprimaryColor,
                       fontSize:size.titleFontsize ),)
               ),
             ],

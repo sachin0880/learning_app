@@ -42,7 +42,7 @@ class _ItemTabbarListState extends State<ItemTabbarList> {
                    shape: BoxShape.circle,color: white,
 
                  ),
-                 child: Icon(Icons.phone,color: gold,),
+                 child: Icon(Icons.phone,color: newprimaryColor,),
                ),
                 SizedBox(width: 10,),
                 Container(
@@ -50,7 +50,7 @@ class _ItemTabbarListState extends State<ItemTabbarList> {
                   decoration: BoxDecoration(
                       shape: BoxShape.circle,color: white
                   ),
-                  child: Icon(Icons.message,color: gold,),
+                  child: Icon(Icons.message,color: newprimaryColor,),
                 ),
               ],
             ),

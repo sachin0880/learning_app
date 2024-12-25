@@ -62,9 +62,9 @@ class _SearchPageState extends State<SearchPage> {
                         margin: EdgeInsets.only(left: 5,right: 5),
                         padding: EdgeInsets.only(left: 10,right: 10,top: 10,bottom: 5),
                         decoration: BoxDecoration(borderRadius: BorderRadius.circular(32),
-                            color: (listcolor == categoriesList[index])? gold : Colors.red,
-                            border: Border.all(color: gold)),
-                        child: Text(categoriesList[index],style: TextStyle(fontSize:size.titleFontsize,fontWeight: FontWeight.w500,color: gold ),) ,
+                            color: (listcolor == categoriesList[index])? newprimaryColor : Colors.red,
+                            border: Border.all(color: newprimaryColor)),
+                        child: Text(categoriesList[index],style: TextStyle(fontSize:size.titleFontsize,fontWeight: FontWeight.w500,color: newprimaryColor ),) ,
                       ),
                     );
                   })
@@ -75,7 +75,7 @@ class _SearchPageState extends State<SearchPage> {
 
               SizedBox(height: 5,),
               RangeSlider(values: values,
-                activeColor: gold,inactiveColor: gray,
+                activeColor: newprimaryColor,inactiveColor: gray,
                 min: 0,max: 100,
                 onChanged: (value) {
                   setState((){
@@ -99,7 +99,7 @@ class _SearchPageState extends State<SearchPage> {
               Text("Rating",style: TextStyle(fontSize:size.titleFontsize,fontWeight: FontWeight.w800 ),),
 
               RangeSlider(values: values2,
-                activeColor: gold,inactiveColor: gray,
+                activeColor: newprimaryColor,inactiveColor: gray,
                 min: 0,max: 100,
                 onChanged: (value) {
                 setState((){
@@ -143,10 +143,10 @@ class _SearchPageState extends State<SearchPage> {
                                 margin: EdgeInsets.only(left: 10,right: 5),
                                 padding: EdgeInsets.only(left: 30,top: 10,bottom: 10,right: 30),
                                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(42),
-                                    color: (btncolor==index)?gold : Colors.transparent,
-                                border: Border.all(color: (btncolor==index)?Colors.transparent : gold)),
+                                    color: (btncolor==index)?newprimaryColor : Colors.transparent,
+                                border: Border.all(color: (btncolor==index)?Colors.transparent : newprimaryColor)),
                                 child:Center(child: Text(btnlist[index],style: TextStyle(fontSize:size.subtitleFontsize,fontWeight: FontWeight.w800,
-                                color: (btncolor==index)?white : gold),)),
+                                color: (btncolor==index)?white : newprimaryColor),)),
                               ),
                             );
                           }),
@@ -199,7 +199,7 @@ class _SearchPageState extends State<SearchPage> {
                          child: Container(
                            margin: EdgeInsets.all(5),
                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(12),
-                           color: gold),
+                           color: newprimaryColor),
                            padding: EdgeInsets.all(7),
                            child: Icon(Icons.medication_liquid,color: white,),
                          ),
@@ -213,13 +213,13 @@ class _SearchPageState extends State<SearchPage> {
 
                  SizedBox(height: 30,),
                  TabBar(
-                    labelColor: gold,
-                    indicatorColor: gold,
+                    labelColor: newprimaryColor,
+                    indicatorColor: newprimaryColor,
                     unselectedLabelColor: Colors.black,
                     dividerColor: Colors.transparent,
                     tabs: [
-                      Tab(child: Text("Course",style: TextStyle(fontSize:size.titleFontsize,color: gold ),),),
-                      Tab(child: Text("Mentors",style: TextStyle(fontSize:size.titleFontsize,color: gold ),),),
+                      Tab(child: Text("Course",style: TextStyle(fontSize:size.titleFontsize,color: newprimaryColor ),),),
+                      Tab(child: Text("Mentors",style: TextStyle(fontSize:size.titleFontsize,color: newprimaryColor ),),),
                     ],
                   ),
                 ],
@@ -239,7 +239,7 @@ class _SearchPageState extends State<SearchPage> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text("Results for Design",style: TextStyle(fontSize:size.titleFontsize ),),
-                              Text("153 Results Found",style: TextStyle(color: gold),),
+                              Text("153 Results Found",style: TextStyle(color: newprimaryColor),),
                             ],
                           ),
                           TabbarCustom(),
@@ -257,7 +257,7 @@ class _SearchPageState extends State<SearchPage> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text("Results for Design",style: TextStyle(fontSize:size.titleFontsize ),),
-                              Text("153 Results Found",style: TextStyle(color: gold),),
+                              Text("153 Results Found",style: TextStyle(color: newprimaryColor),),
                             ],
                           ),
                           ItemTabbarList(),

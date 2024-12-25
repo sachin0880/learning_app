@@ -2,6 +2,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../utils/constants/colors.dart';
+
 class CoursesTab extends StatelessWidget {
 
   List<CourseCard> cardlist=[
@@ -42,7 +44,7 @@ class CoursesTab extends StatelessWidget {
         itemCount: cardlist.length
         ,itemBuilder: (BuildContext context , index){
          return   Card(
-           color: Colors.white,
+            color:white,
            elevation: 5,
            margin: const EdgeInsets.symmetric(vertical: 8),
            child: Row(

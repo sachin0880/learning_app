@@ -41,6 +41,13 @@ class _CustomProfilsState extends State<CustomProfils> {
                 borderRadius: BorderRadius.circular(42),
                   child: Image(image: AssetImage(item.img),fit:BoxFit.contain,height: 84,),
                 ),
+            //     Container(
+            //       padding: EdgeInsets.zero,
+            //       decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.red ,
+            //      ),
+            // child:Image(image: AssetImage(item.img),fit:BoxFit.contain,height: 120,),
+            //     ),
+
                 Text(item.text1, style: TextStyle(fontSize:size.subtitleFontsize ),)
               ],
             ),

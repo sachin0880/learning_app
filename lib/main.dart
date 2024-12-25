@@ -1,8 +1,11 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:learning_app/utils/constants/colors.dart';
+import 'package:learning_app/views/Categories/catogrys.dart';
+import 'package:learning_app/views/Popular_coures/popular_coures.dart';
 import 'package:learning_app/views/home_page/homePage.dart';
 import 'package:learning_app/views/home_page/widgets_homepage/list_container_homepage/Custom_list_homepage.dart';
+import 'package:learning_app/views/preview_page/pre_view_page.dart';
 import 'package:learning_app/views/tabbars_page/tabbar_page.dart';
 
 void main() {
@@ -25,7 +28,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: newprimaryColor),
         useMaterial3: true,
       ),
-      home: SearchPage(),
+      home: HomePage(),
     );
   }
 }

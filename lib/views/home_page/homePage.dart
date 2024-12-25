@@ -97,20 +97,7 @@ class _HomePageState extends State<HomePage> {
               child: Stack(
         
                 children:[
-                  CarouselSlider(
-                      options: CarouselOptions(
-                    padEnds: true,
-                    autoPlay: true,
-                    viewportFraction: 1.0
-                  ) ,
-                    items: itemsimg.map((item) =>Container(
-                      margin: EdgeInsets.only(left: 15,right: 15)
-                      ,height: 200,width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration( borderRadius: BorderRadius.circular(12)  ,
-                          image: DecorationImage(image:AssetImage(item),fit: BoxFit.fill)
-                      ),
-                    )).toList()
-                ),
+                 CustomCarouselSlider(itemsimg: itemsimg),
                 Align(
                   alignment: Alignment.bottomCenter,
                   child: Padding(
@@ -152,7 +139,7 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   Text("Categories",style: TextStyle(color: black,fontSize:size.titleFontsize,
                       fontWeight: FontWeight.w800 ),),
-                  Text("See all",style: TextStyle(color: gold,fontSize:size.titleFontsize,
+                  Text("See all",style: TextStyle(color: newprimaryColor,fontSize:size.titleFontsize,
                       fontWeight: FontWeight.w800 ),),
                 ],
               ),
@@ -160,12 +147,13 @@ class _HomePageState extends State<HomePage> {
               CustomGridBox() ,
 
  //===================================================================
+              SizedBox(height: 10,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text("Popular Course",style: TextStyle(color: black,fontSize:size.titleFontsize,
                       fontWeight: FontWeight.w800 ),),
-                  Text("See all",style: TextStyle(color: gold,fontSize:size.titleFontsize,
+                  Text("See all",style: TextStyle(color: newprimaryColor,fontSize:size.titleFontsize,
                       fontWeight: FontWeight.w800 ),),
                 ],
               ),
@@ -195,7 +183,7 @@ class _HomePageState extends State<HomePage> {
               //             ListTile(leading: Image(image: AssetImage(item.img3),height: 22,),
               //               title: Text(item.Text3),
               //             trailing:Text(item.Text4, style: TextStyle(fontSize:size.titleFontsize,
-              //                 color: gold, fontWeight: FontWeight.w800 ),)
+              //                 color: newprimaryColor, fontWeight: FontWeight.w800 ),)
               //             ),
               //           ],
               //         ),
@@ -213,7 +201,7 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   Text("Top Mentor",style: TextStyle(color: black,fontSize:size.titleFontsize,
                       fontWeight: FontWeight.w800 ),),
-                  Text("See all",style: TextStyle(color: gold,fontSize:size.titleFontsize,
+                  Text("See all",style: TextStyle(color: newprimaryColor,fontSize:size.titleFontsize,
                       fontWeight: FontWeight.w800 ),),
                 ],
               ),
@@ -229,7 +217,7 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   Text("Continue Learniing",style: TextStyle(color: black,fontSize:size.titleFontsize,
                       fontWeight: FontWeight.w800 ),),
-                  Text("See all",style: TextStyle(color: gold,fontSize:size.titleFontsize,
+                  Text("See all",style: TextStyle(color: newprimaryColor,fontSize:size.titleFontsize,
                       fontWeight: FontWeight.w800 ),),
                 ],
               ),
