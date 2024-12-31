@@ -50,11 +50,8 @@ class _SearchPageState extends State<SearchPage> {
   List<String> categoriesList2 = ["English", "German", "French", "Hindi" , "spanish",];
   int listcolor2 = 0;
 
-  List<String> categoriesList3 = [
-    "30 Minutes",
-    "60 Minutes",
-    "75 Minutes",
-    "90 Minutes"
+  List<String> categoriesList3 = ["30 Minutes", "60 Minutes",
+    "75 Minutes", "90 Minutes"
   ];
   int listcolor3 = 0;
 

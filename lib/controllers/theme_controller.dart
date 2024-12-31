@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../main.dart';
@@ -21,5 +22,6 @@ class ThemeController extends GetxController{
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setBool('isDarkMode', isDarkMode.value);
     Get.changeTheme(isDarkMode.value ? AppThemes.darkTheme : AppThemes.lightTheme);
+
   }
 }

@@ -2,26 +2,33 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:learning_app/chatting_screens/messages.dart';
+import 'package:learning_app/user_profile/add_newcard.dart';
+import 'package:learning_app/user_profile/contect_us.dart';
+import 'package:learning_app/user_profile/edit_profile.dart';
+import 'package:learning_app/user_profile/payment_method.dart';
+import 'package:learning_app/user_profile/profile_page.dart';
+import 'package:learning_app/user_profile/setting.dart';
+import 'package:learning_app/user_status/create_account.dart';
+import 'package:learning_app/user_status/intro_screen/splash_screen.dart';
+import 'package:learning_app/user_status/sign_screen.dart';
+import 'package:learning_app/user_status/success_screens/success_scr.dart';
 import 'package:learning_app/utils/constants/colors.dart';
 import 'package:learning_app/utils/constants/global.dart';
-import 'package:learning_app/views/Bottom_navigation_bar/Bottom_navigation_homePage.dart';
-import 'package:learning_app/views/Continues_learn/ContinueLearning.dart';
-import 'package:learning_app/views/Introduction_page.dart';
-import 'package:learning_app/views/Mentor_details/Mentor_pages.dart';
-import 'package:learning_app/views/My_courses/Bookmarked_page.dart';
-import 'package:learning_app/views/My_courses/E-receipt_page.dart';
-import 'package:learning_app/views/My_courses/course_lesson_tabbar.dart';
-import 'package:learning_app/views/video_calll_screen/CallScreen_page.dart';
-import 'package:learning_app/views/video_calll_screen/callscreen2.dart';
-import 'package:learning_app/views/video_calll_screen/videoplay.dart';
-import 'package:learning_app/views/Review_screens/review_page.dart';
+
 import 'package:learning_app/views/home_page/homePage.dart';
 import 'package:learning_app/views/notifcation-page/notify_page.dart';
 
+import 'chatting_screens/chat_screen.dart';
+
 void main() {
+
   runApp( DevicePreview(builder: (context) => MyApp(), enabled: !kReleaseMode,));
   //runApp(const MyApp());
+
 }
+
 
 
 
@@ -32,15 +39,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(() => GetMaterialApp(
-      builder: DevicePreview.appBuilder,
-      locale: DevicePreview.locale(context),
+      // builder: DevicePreview.appBuilder,
+      // locale: DevicePreview.locale(context),
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: AppThemes.lightTheme,
       darkTheme: AppThemes.darkTheme,
-      // themeMode: ThemeMode.system,
       themeMode: themeController.isDarkMode.value ? ThemeMode.dark : ThemeMode.light,
+
       home: CallScreen(),
+
     ));
   }
 }
