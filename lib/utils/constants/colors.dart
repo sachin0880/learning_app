@@ -16,6 +16,8 @@ const Color darkgray = Color(0xff898D8F);
 
 const Color newprimaryColor = Color(0xffF47375);
 const Color CarouselColor = Color(0xffED5A90);
-const Color gold = Color(0xffFFB23A);
+// const Color gold = Color(0xffFFB23A);
+const Color gold = Color(0xffF47375);
 const Color ligthgold = Color(0xffFFF9E6);
 const Color oldwhite = Color(0xffF2F5F8);
+const Color dgreen = Color(0xff2B9447);

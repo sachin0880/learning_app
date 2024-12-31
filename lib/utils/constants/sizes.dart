@@ -13,4 +13,9 @@ class Size {
   final mediumSizeBox = 12.0;
   final largeSizeBox = 20.0;
   final iconSize = 30.0;
+  final tradius_small =10.0;
+  final tradius_medi =15.0;
+  final tradius_large =20.0;
+  final tbutton_hei = 45.0 ;
+
 }
