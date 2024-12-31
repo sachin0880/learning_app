@@ -1,16 +1,24 @@
 import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:learning_app/utils/constants/colors.dart';
 import 'package:learning_app/utils/constants/global.dart';
-import 'package:learning_app/views/home_page/widgets_homepage/custom_carousel_class/carousel_class.dart';
-import 'package:learning_app/views/home_page/widgets_homepage/grid_2/grid2.dart';
-import 'package:learning_app/views/home_page/widgets_homepage/grid_view_custom/custom_grid_class.dart';
-import 'package:learning_app/views/home_page/widgets_homepage/grid_view_custom/custom_gridview_box.dart';
-import 'package:learning_app/views/home_page/widgets_homepage/list_container_homepage/Custom_list_homepage.dart';
-import 'package:learning_app/views/home_page/widgets_homepage/profile_cust_list/custom_profil_list.dart';
+import 'package:learning_app/views/Categories/Category.dart';
+import 'package:learning_app/views/tabbars_page/tabbar_page.dart';
 
-import '../tabbars_page/tabbar_wedgit/custom_list_items.dart';
+import '../../utils/constants/custome_widgets/Carousels_widget.dart';
+import '../../utils/constants/custome_widgets/Popular_course_widget.dart';
+import '../../utils/constants/custome_widgets/catogegires_list_widget.dart';
+import '../../utils/constants/custome_widgets/course_list_widget.dart';
+import '../../utils/constants/custome_widgets/top_mentor_widget.dart';
+import '../Continues_learn/ContinueLearning.dart';
+import '../Mentor_details/Mentor_pages.dart';
+import '../Popular_lists/Popularcourse.dart';
+import '../TopMontors/topmentors.dart';
+import '../course_preview/CoursePreview.dart';
+import '../notifcation-page/notify_page.dart';
+
 
 
 class HomePage extends StatefulWidget {
@@ -33,12 +41,56 @@ class _HomePageState extends State<HomePage> {
     gridcustom("assets/images/brush.png", "Art"),
     gridcustom("assets/images/experiment.png", "Science")
   ];
-  
-  List<CarouselClasss> carouselitem=[
-   CarouselClasss("assets/images/best_seller.png",
-       "Design Thinking Fundamentals", "Robert Green", "4.8 (1.5k reviews)", 
-       "180.00", "assets/images/user.png", "assets/images/star.png", "assets/images/dollor.png"),
-   ];
+
+
+  List<String> carouselitems = [
+    'assets/images/catouselimg.png',
+    'assets/images/catouselimg.png',
+    'assets/images/catouselimg.png'
+  ];
+
+  List<gridcustom> categoryitems =[
+    gridcustom("assets/images/maths.png", "Math"),
+    gridcustom("assets/images/brush.png", "Art"),
+    gridcustom("assets/images/experiment.png", "Science"),
+    gridcustom("assets/images/maths.png", "Math"),
+    gridcustom("assets/images/brush.png", "Art"),
+    gridcustom("assets/images/experiment.png", "Science")
+  ];
+
+  List<Map<String,dynamic>> Mentorlist = [
+    {"image" :"assets/images/manprofile.png", "name":"John Doe" ,},
+    {"image" :"assets/images/manprofile.png", "name":"John Doe" ,},
+    {"image" :"assets/images/manprofile.png", "name":"John Doe" ,},
+    {"image" :"assets/images/manprofile.png", "name":"John Doe" ,},
+    {"image" :"assets/images/manprofile.png", "name":"John Doe" ,},
+    {"image" :"assets/images/manprofile.png", "name":"John Doe" ,},
+    {"image" :"assets/images/manprofile.png", "name":"John Doe" ,},
+    {"image" :"assets/images/manprofile.png", "name":"John Doe" ,}
+  ];
+
+  List<Map<String,dynamic>> courselistitems=[
+    {"title":'Introduction to Figma' ,
+      "author": 'Robert Green',
+      "imageUrl": 'assets/images/meets.jpg',
+      "img2": 'assets/images/user.png',
+      "design": 'Design'},
+    {"title":'Introduction to Figma' ,
+      "author": 'Robert Green',
+      "imageUrl": 'assets/images/meets.jpg',
+      "img2": 'assets/images/user.png',
+      "design": 'Design'},
+    {"title":'Introduction to Figma' ,
+      "author": 'Robert Green',
+      "imageUrl": 'assets/images/meets.jpg',
+      "img2": 'assets/images/user.png',
+      "design": 'Design'},
+    {"title":'Introduction to Figma' ,
+      "author": 'Robert Green',
+      "imageUrl": 'assets/images/meets.jpg',
+      "img2": 'assets/images/user.png',
+      "design": 'Design'},
+  ];
 
   List profilimg = [
     {
@@ -64,24 +116,31 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     backgroundColor: Colors.black,
+
       appBar: AppBar( surfaceTintColor: Colors.transparent,
-        leading: Image(image: AssetImage('assets/images/menuicons.png'),),
+        leadingWidth: 45,
+        leading: Image(image: AssetImage('assets/images/menuicons.png',),
+        color: themeController.isDarkMode.value ? white : black,),
         title: Row(
           children: [
-            Text("Hi, Yash",style: TextStyle(color: black,fontSize:size.titleFontsize ),),
+            Text("Hi, Yash",style: TextStyle(color: themeController.isDarkMode.value ? white : black,
+              fontSize:size.headingFontsize,),),
           ],
         ),
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 10),
-            child: Container(
-              padding: EdgeInsets.all(6),
-              decoration: BoxDecoration(borderRadius: BorderRadius.circular(55),
-                boxShadow:[BoxShadow(
-                  color: gray, blurRadius: 9 ,spreadRadius: 5, offset: Offset(-1, 2)
-                )] ,color: white),
-              child: Image(image: AssetImage('assets/images/bell.png')),
+            child: GestureDetector(
+              onTap: (){Get.to(NotificationsScreen());},
+              child: Container(
+                padding: EdgeInsets.all(6),
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(55),
+                  boxShadow:[BoxShadow(
+                    color:themeController.isDarkMode.value ? Colors.transparent : gray, blurRadius: 12 ,spreadRadius: 7, offset: Offset(0, 0)
+                  )] ,color: white),
+                child: Image(image: AssetImage('assets/images/bell.png'),
+                color: themeController.isDarkMode.value ? newprimaryColor : black,),
+              ),
             ),
           )
         ],
@@ -90,35 +149,31 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-        
+
             SizedBox(height: 20,),
             Container(
+              padding: EdgeInsets.zero,
                 height: 250,
               child: Stack(
-        
+
                 children:[
-                  CarouselSlider(
-                      options: CarouselOptions(
-                    padEnds: true,
-                    autoPlay: true,
-                    viewportFraction: 1.0
-                  ) ,
-                    items: itemsimg.map((item) =>Container(
-                      margin: EdgeInsets.only(left: 15,right: 15)
-                      ,height: 200,width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration( borderRadius: BorderRadius.circular(12)  ,
-                          image: DecorationImage(image:AssetImage(item),fit: BoxFit.fill)
-                      ),
-                    )).toList()
-                ),
+
+                  CarouselCustomeWidget(carousellist: carouselitems,),
+
                 Align(
                   alignment: Alignment.bottomCenter,
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 30,right: 30),
+                    padding: EdgeInsets.only(left: 30,bottom: 25,right: 30),
                     child: Container(
                       padding: EdgeInsets.only(left: 10),
                       decoration: BoxDecoration(borderRadius: BorderRadius.circular(32),
-                      color: white
+                      color: white , boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.1),
+                              blurRadius: 6,
+                              offset: Offset(-2, 5),
+                            ),
+                          ]
                       ),
                       child: TextFormField(
                         decoration: InputDecoration(
@@ -126,9 +181,14 @@ class _HomePageState extends State<HomePage> {
                           hintText: "search",
                           suffixIcon: Padding(
                             padding: const EdgeInsets.all(5),
-                            child: CircleAvatar(
-                                backgroundColor: black
-                                ,child: Icon(Icons.share,color: white,)),
+                            child: GestureDetector(
+                              onTap: (){
+                                Navigator.push(context, MaterialPageRoute(builder: (context)=>SearchPage()));
+                              },
+                              child: CircleAvatar(
+                                  backgroundColor: black
+                                  ,child: Icon(Icons.share,color: white,)),
+                            ),
                           ),
                           border: InputBorder.none
                         ),
@@ -139,117 +199,109 @@ class _HomePageState extends State<HomePage> {
                 ]
               ),
             ),
-            
+
         //====================================================================================
-        
-        Padding(
-          padding: const EdgeInsets.only(left: 20,right: 20,top: 17),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
+
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding:  EdgeInsets.only(left:size.mediumPadding ,right:size.mediumPadding,top: size.mediumPadding),
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Categories",style: TextStyle(color: black,fontSize:size.titleFontsize,
-                      fontWeight: FontWeight.w800 ),),
-                  Text("See all",style: TextStyle(color: gold,fontSize:size.titleFontsize,
-                      fontWeight: FontWeight.w800 ),),
+                  Text("Categories",style: TextStyle(color:themeController.isDarkMode.value ? white : black
+                    ,fontSize:size.headingFontsize ,),),
+                  GestureDetector(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>Category()));
+                      },
+                      child: Text("See all",style: TextStyle(color: newprimaryColor,fontSize:size.contentFontSize,),)),
                 ],
               ),
-              SizedBox(height: 10,),
-              CustomGridBox() ,
+            ),
+            // CustomGridBox() ,
+            SizedBox(height: size.mediumPadding,),
 
- //===================================================================
-              Row(
+            SizedBox(child: CategoryListWidget(categoryitem: categoryitems,)),
+
+         //===================================================================
+
+            Padding(
+              padding:  EdgeInsets.only(left:size.mediumPadding ,right:size.mediumPadding,top: size.mediumPadding),
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Popular Course",style: TextStyle(color: black,fontSize:size.titleFontsize,
-                      fontWeight: FontWeight.w800 ),),
-                  Text("See all",style: TextStyle(color: gold,fontSize:size.titleFontsize,
-                      fontWeight: FontWeight.w800 ),),
+                  Text("Popular Course",style: TextStyle(color:themeController.isDarkMode.value ? white : black
+                    ,fontSize:size.headingFontsize ,),),
+                  GestureDetector( onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>PopularCoursesScreen()));
+                  },child: Text("See all",style: TextStyle(color: newprimaryColor,fontSize:size.contentFontSize ,),)),
                 ],
               ),
-        
-              // Container(height: 800, color: Colors.red,
-              //   child: CarouselSlider(
-              //       options: CarouselOptions(
-              //           padEnds: true,
-              //           autoPlay: true,
-              //           viewportFraction: 1.0
-              //       ) ,
-              //       items: carouselitem.map((item) =>Container(
-              //         height:600,
-              //         margin: EdgeInsets.only(left: 5,right: 5),
-              //         decoration: BoxDecoration( borderRadius: BorderRadius.circular(12),
-              //         color: Colors.grey),
-              //         child: Column(
-              //           children: [
-              //             Container( height: 90,
-              //              // width: MediaQuery.of(context).size.width,
-              //               child: Image(image: AssetImage(item.img),height: 50,),
-              //             ),
-              //             Text(item.Text1, style: TextStyle(fontSize:size.titleFontsize,fontWeight: FontWeight.w800 ),),
-              //             ListTile(leading: Image(image: AssetImage(item.img2),height: 22,),
-              //             title: Text(item.Text2),),
-              //
-              //             ListTile(leading: Image(image: AssetImage(item.img3),height: 22,),
-              //               title: Text(item.Text3),
-              //             trailing:Text(item.Text4, style: TextStyle(fontSize:size.titleFontsize,
-              //                 color: gold, fontWeight: FontWeight.w800 ),)
-              //             ),
-              //           ],
-              //         ),
-              //       )).toList()
-              //   ),
-              // ),
-              //
-              SizedBox(height: 20,),
-             CustomeGridview2(),
-              SizedBox(height: 20,),
-//=================================================================================
+            ),
 
-              Row(
+            SizedBox(height: size.mediumPadding,),
+            SizedBox(child: GestureDetector(
+              onTap: (){Get.to(CoursePreviewPage());},
+                child: PopularCourseWidget(direction: Axis.horizontal, hight: 310,))),
+
+        //=================================================================================
+
+            Padding(
+              padding:  EdgeInsets.only(left:size.mediumPadding ,right:size.mediumPadding,top: size.mediumPadding),
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Top Mentor",style: TextStyle(color: black,fontSize:size.titleFontsize,
-                      fontWeight: FontWeight.w800 ),),
-                  Text("See all",style: TextStyle(color: gold,fontSize:size.titleFontsize,
-                      fontWeight: FontWeight.w800 ),),
+                  Text("Top Mentor",style: TextStyle(color:themeController.isDarkMode.value ? white : black
+                    ,fontSize:size.headingFontsize ,),),
+                  GestureDetector(onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>TopMentorList()));
+                      },
+                  child: Text("See all",style: TextStyle(color: newprimaryColor,fontSize:size.contentFontSize ,),)),
                 ],
               ),
+            ),
 
-              SizedBox(height: 20,),
-              CustomProfils(),
-              SizedBox(height: 20,),
+            SizedBox(height: size.mediumPadding,),
+            SizedBox(child: GestureDetector(
+                onTap: (){Get.to(MentorDetails());},
+                child: TopMentorWidget(topmentorlist: Mentorlist,))),
 
-  //==============================================================================================
+          //==============================================================================================
 
-              Row(
+            Padding(
+              padding:  EdgeInsets.only(left:size.mediumPadding ,right:size.mediumPadding,top: size.mediumPadding),
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Continue Learniing",style: TextStyle(color: black,fontSize:size.titleFontsize,
-                      fontWeight: FontWeight.w800 ),),
-                  Text("See all",style: TextStyle(color: gold,fontSize:size.titleFontsize,
-                      fontWeight: FontWeight.w800 ),),
+                  Text("Continue Learniing",style: TextStyle(color:themeController.isDarkMode.value ? white : black,fontSize:size.headingFontsize ,),),
+                  GestureDetector(onTap: () {
+                    Get.to(Continuelearning());
+                  },
+                  child: Text("See all",style: TextStyle(color: newprimaryColor,fontSize:size.contentFontSize ,),)),
                 ],
               ),
-              SizedBox(height: 20,),
-              CoursesTab(),
+            ),
+          //  SizedBox(height: 20,),
+            Padding(
+              padding:  EdgeInsets.only(left:size.mediumPadding ,right:size.mediumPadding,top: size.mediumPadding),
+              child: ContinueLearningWidget(courselist: courselistitems,),
+            ),
 
-//=======================================================================
-        
-            SizedBox(height: 50,)
-        
-        
-        
-            ],
-          ),
+        //=======================================================================
+
+          SizedBox(height: 50,)
+
+
+
+          ],
         )
-             
-            
-            
-            
-        
+
+
+
+
+
           ],
         ),
       ),

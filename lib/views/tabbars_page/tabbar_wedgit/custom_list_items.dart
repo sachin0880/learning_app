@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:learning_app/utils/constants/colors.dart';
 
+import '../../../utils/constants/custome_widgets/Carousels_widget.dart';
 import '../../../utils/constants/global.dart';
 import '../../home_page/widgets_homepage/custom_carousel_class/carousel_class.dart';
 
@@ -35,6 +36,7 @@ class _TabbarCustomState extends State<TabbarCustom> {
   @override
   Widget build(BuildContext context) {
     return Container( height: 680,
+      //margin: EdgeInsets.only(left: 10,right: 10),
       child: ListView.builder(
             itemCount: carouselitem.length  ,
           itemBuilder: (BuildContext context, index){
@@ -42,9 +44,17 @@ class _TabbarCustomState extends State<TabbarCustom> {
                padding: const EdgeInsets.only(bottom: 20,top: 20),
                child: Container(
                  padding: EdgeInsets.only(top: 10,left: 10,right: 10),
+                 margin: EdgeInsets.only(left: 10,right: 10),
                  decoration: BoxDecoration(
                    borderRadius: BorderRadius.circular(12),
-                   color: white
+                   color: white,
+                   boxShadow: [
+                     BoxShadow(
+                       color: Colors.black.withOpacity(0.4),
+                       blurRadius: 6,
+                       offset: Offset(-2, 2),
+                     ),
+                   ],
                  ),
                  child: Column(
                    crossAxisAlignment: CrossAxisAlignment.start,

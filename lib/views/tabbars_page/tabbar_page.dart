@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:learning_app/utils/constants/colors.dart';
+import 'package:learning_app/views/Categories/Category.dart';
+import 'package:learning_app/views/tabbars_page/tabbar_wedgit/Listitem_class.dart';
 import 'package:learning_app/views/tabbars_page/tabbar_wedgit/Tabbar_list_item.dart';
 import 'package:learning_app/views/tabbars_page/tabbar_wedgit/custom_list_items.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../utils/constants/custome_widgets/Popular_course_widget.dart';
+import '../../utils/constants/custome_widgets/button_widget.dart';
+import '../../utils/constants/custome_widgets/mentor_list_widget.dart';
 import '../../utils/constants/global.dart';
-import '../home_page/widgets_homepage/grid_2/grid2.dart';
-import '../home_page/widgets_homepage/list_container_homepage/Custom_list_homepage.dart';
+
 
 class SearchPage extends StatefulWidget {
   @override
@@ -15,10 +20,34 @@ class SearchPage extends StatefulWidget {
 
 class _SearchPageState extends State<SearchPage> {
   bool isDarkMode = false;
-  List<String> categoriesList = ["Art", "Coding", "Marketing", "Buisness"];
+  List<String> categoriesList = ["Art", "Coding", "Marketing", "Buisness","Designing"];
   int listcolor = 0;
 
-  List<String> categoriesList2 = ["English", "German", "French", "spanish"];
+  @override
+  void initState(){
+    super.initState();
+    setTheme();
+  }
+
+  Future<void> setTheme() async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      isDarkMode = prefs.getBool('isDarkMode')??false;
+    });
+  }
+
+
+  List<ListtileClass> listclassitem=[
+    ListtileClass("assets/images/manprofile.png", "John Doe", "Design Expert"),
+    ListtileClass("assets/images/manprofile.png", "John Doe", "Design Expert"),
+    ListtileClass("assets/images/manprofile.png", "John Doe", "Design Expert"),
+    ListtileClass("assets/images/manprofile.png", "John Doe", "Design Expert"),
+    ListtileClass("assets/images/manprofile.png", "John Doe", "Design Expert"),
+
+  ];
+
+
+  List<String> categoriesList2 = ["English", "German", "French", "Hindi" , "spanish",];
   int listcolor2 = 0;
 
   List<String> categoriesList3 = ["30 Minutes", "60 Minutes",
@@ -36,15 +65,15 @@ class _SearchPageState extends State<SearchPage> {
     void bottom() {
       showModalBottomSheet(
           isScrollControlled: true,
-          backgroundColor: white,
+          backgroundColor: themeController.isDarkMode.value ? black : white,
           context: context,
           builder: (context) {
             return StatefulBuilder(
               builder: (context, setState) {
                 return Container(
-                  height: MediaQuery.of(context).size.height * 0.9,
+                  height: MediaQuery.of(context).size.height * 0.84,
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 10, right: 10),
+                    padding: EdgeInsets.only(left: size.mediumPadding, right: size.mediumPadding),
                     child: SingleChildScrollView(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -55,11 +84,23 @@ class _SearchPageState extends State<SearchPage> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text(
-                                "Filter",
-                                style: TextStyle(
-                                    fontSize: size.titleFontsize,
-                                    fontWeight: FontWeight.w800),
+                              Column(
+                                children: [
+                                  Container(height: 10 ,width: 30,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(42),
+                                      color: newprimaryColor,
+                                    ),
+                                  ),
+                                  SizedBox(height: 5,),
+                                  Text(
+                                    "Filter",
+                                    style: TextStyle(
+                                        fontSize: size.titleFontsize,
+                                        fontWeight: FontWeight.w500,
+                                    color: themeController.isDarkMode.value ? oldwhite : black),
+                                  ),
+                                ],
                               )
                             ],
                           ),
@@ -70,54 +111,15 @@ class _SearchPageState extends State<SearchPage> {
                           Text(
                             "Categories",
                             style: TextStyle(
-                                fontSize: size.titleFontsize,
-                                fontWeight: FontWeight.w800),
+                                fontSize: size.subtitleFontsize,
+                                fontWeight: FontWeight.w500,
+                            color: themeController.isDarkMode.value ? oldwhite : black),
                           ),
                           SizedBox(
                             height: 10,
                           ),
-                          Container(
-                              height: 54,
-                              child: ListView.builder(
-                                  scrollDirection: Axis.horizontal,
-                                  itemCount: categoriesList.length,
-                                  itemBuilder: (BuildContext context, index) {
-                                    return GestureDetector(
-                                      onTap: () {
-                                        setState(() {
-                                          listcolor = index;
-                                        });
-                                      },
-                                      child: Container(
-                                        margin:
-                                            EdgeInsets.only(left: 5, right: 5),
-                                        padding: EdgeInsets.only(
-                                            left: 10,
-                                            right: 10,
-                                            top: 10,
-                                            bottom: 5),
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(32),
-                                            color: (listcolor == index)
-                                                ? gold
-                                                : Colors.transparent,
-                                            border: Border.all(
-                                                color: (listcolor == index)
-                                                    ? Colors.transparent
-                                                    : gold)),
-                                        child: Text(
-                                          categoriesList[index],
-                                          style: TextStyle(
-                                              fontSize: size.titleFontsize,
-                                              fontWeight: FontWeight.w500,
-                                              color: (listcolor == index)
-                                                  ? white
-                                                  : gold),
-                                        ),
-                                      ),
-                                    );
-                                  })),
+
+                          ButtonWidget(btnlist: categoriesList , initialIndex: listcolor),
                           //================================================================
                           SizedBox(
                             height: 15,
@@ -125,8 +127,9 @@ class _SearchPageState extends State<SearchPage> {
                           Text(
                             "Price Range",
                             style: TextStyle(
-                                fontSize: size.titleFontsize,
-                                fontWeight: FontWeight.w800),
+                                fontSize: size.subtitleFontsize,
+                                fontWeight: FontWeight.w500,
+                            color: themeController.isDarkMode.value ? oldwhite : black),
                           ),
 
                           SizedBox(
@@ -152,37 +155,43 @@ class _SearchPageState extends State<SearchPage> {
                                 "\$20",
                                 style: TextStyle(
                                     fontSize: size.subtitleFontsize,
-                                    fontWeight: FontWeight.w800),
+                                    fontWeight: FontWeight.w500,
+                                color: themeController.isDarkMode.value ? darkgray : black),
                               ),
                               Text(
                                 "\$30",
                                 style: TextStyle(
                                     fontSize: size.subtitleFontsize,
-                                    fontWeight: FontWeight.w800),
+                                    fontWeight: FontWeight.w500,
+                                color: themeController.isDarkMode.value ? darkgray : black),
                               ),
                               Text(
                                 "\$40",
                                 style: TextStyle(
                                     fontSize: size.subtitleFontsize,
-                                    fontWeight: FontWeight.w800),
+                                    fontWeight: FontWeight.w500,
+                                color: themeController.isDarkMode.value ? darkgray : black),
                               ),
                               Text(
                                 "\$50",
                                 style: TextStyle(
                                     fontSize: size.subtitleFontsize,
-                                    fontWeight: FontWeight.w800),
+                                    fontWeight: FontWeight.w500,
+                                color: themeController.isDarkMode.value ? darkgray : black),
                               ),
                               Text(
                                 "\$60",
                                 style: TextStyle(
                                     fontSize: size.subtitleFontsize,
-                                    fontWeight: FontWeight.w800),
+                                    fontWeight: FontWeight.w500,
+                                color: themeController.isDarkMode.value ? darkgray : black),
                               ),
                               Text(
                                 "\$70",
                                 style: TextStyle(
                                     fontSize: size.subtitleFontsize,
-                                    fontWeight: FontWeight.w800),
+                                    fontWeight: FontWeight.w500,
+                                color: themeController.isDarkMode.value ? darkgray : black),
                               ),
                             ],
                           ),
@@ -193,8 +202,9 @@ class _SearchPageState extends State<SearchPage> {
                           Text(
                             "Rating",
                             style: TextStyle(
-                                fontSize: size.titleFontsize,
-                                fontWeight: FontWeight.w800),
+                                fontSize: size.subtitleFontsize,
+                                fontWeight: FontWeight.w500,
+                            color: themeController.isDarkMode.value ? oldwhite : black),
                           ),
 
                           RangeSlider(
@@ -219,13 +229,15 @@ class _SearchPageState extends State<SearchPage> {
                                   "1.0",
                                   style: TextStyle(
                                       fontSize: size.subtitleFontsize,
-                                      fontWeight: FontWeight.w800),
+                                      fontWeight: FontWeight.w500,
+                                  color: themeController.isDarkMode.value ? darkgray : black),
                                 ),
                                 Text(
                                   "5.0",
                                   style: TextStyle(
                                       fontSize: size.subtitleFontsize,
-                                      fontWeight: FontWeight.w800),
+                                      fontWeight: FontWeight.w500,
+                                  color: themeController.isDarkMode.value ? darkgray : black),
                                 ),
                               ],
                             ),
@@ -237,54 +249,14 @@ class _SearchPageState extends State<SearchPage> {
                           Text(
                             "Language",
                             style: TextStyle(
-                                fontSize: size.titleFontsize,
-                                fontWeight: FontWeight.w800),
+                                fontSize: size.subtitleFontsize,
+                                fontWeight: FontWeight.w500,
+                            color: themeController.isDarkMode.value ? oldwhite : black),
                           ),
                           SizedBox(
                             height: 10,
                           ),
-                          Container(
-                              height: 54,
-                              child: ListView.builder(
-                                  scrollDirection: Axis.horizontal,
-                                  itemCount: categoriesList2.length,
-                                  itemBuilder: (BuildContext context, index) {
-                                    return GestureDetector(
-                                      onTap: () {
-                                        setState(() {
-                                          listcolor2 = index;
-                                        });
-                                      },
-                                      child: Container(
-                                        margin:
-                                            EdgeInsets.only(left: 5, right: 5),
-                                        padding: EdgeInsets.only(
-                                            left: 10,
-                                            right: 10,
-                                            top: 10,
-                                            bottom: 5),
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(32),
-                                            color: (listcolor2 == index)
-                                                ? gold
-                                                : Colors.transparent,
-                                            border: Border.all(
-                                                color: (listcolor2 == index)
-                                                    ? Colors.transparent
-                                                    : gold)),
-                                        child: Text(
-                                          categoriesList2[index],
-                                          style: TextStyle(
-                                              fontSize: size.titleFontsize,
-                                              fontWeight: FontWeight.w500,
-                                              color: (listcolor2 == index)
-                                                  ? white
-                                                  : gold),
-                                        ),
-                                      ),
-                                    );
-                                  })),
+                          ButtonWidget(btnlist: categoriesList2 , initialIndex: listcolor2),
 
                           //==================================================================
                           SizedBox(
@@ -293,68 +265,29 @@ class _SearchPageState extends State<SearchPage> {
                           Text(
                             "Course Duration",
                             style: TextStyle(
-                                fontSize: size.titleFontsize,
-                                fontWeight: FontWeight.w800),
+                                fontSize: size.subtitleFontsize,
+                                fontWeight: FontWeight.w500,
+                            color: themeController.isDarkMode.value ? oldwhite : black),
                           ),
                           SizedBox(
                             height: 10,
                           ),
-                          Container(
-                              height: 54,
-                              child: ListView.builder(
-                                  scrollDirection: Axis.horizontal,
-                                  itemCount: categoriesList3.length,
-                                  itemBuilder: (BuildContext context, index) {
-                                    return GestureDetector(
-                                      onTap: () {
-                                        setState(() {
-                                          listcolor3 = index;
-                                        });
-                                      },
-                                      child: Container(
-                                        margin:
-                                            EdgeInsets.only(left: 5, right: 5),
-                                        padding: EdgeInsets.only(
-                                            left: 10,
-                                            right: 10,
-                                            top: 10,
-                                            bottom: 5),
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(32),
-                                            color: (listcolor3 == index)
-                                                ? gold
-                                                : Colors.transparent,
-                                            border: Border.all(
-                                                color: (listcolor3 == index)
-                                                    ? Colors.transparent
-                                                    : gold)),
-                                        child: Text(
-                                          categoriesList3[index],
-                                          style: TextStyle(
-                                              fontSize: size.titleFontsize,
-                                              fontWeight: FontWeight.w500,
-                                              color: (listcolor3 == index)
-                                                  ? white
-                                                  : gold),
-                                        ),
-                                      ),
-                                    );
-                                  })),
+                          ButtonWidget(btnlist: categoriesList3 , initialIndex: listcolor3),
 
                           //===================================================================
 
                           SizedBox(
-                            height: 40,
+                            height: 50,
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(bottom: 10),
+                            padding: const EdgeInsets.only(top: 1),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 Expanded(
                                     child: Container(
-                                  height: 60,
+                                      //color: Colors.red,
+                                  height: 40,
                                   width: MediaQuery.of(context).size.width,
                                   child: ListView.builder(
                                       scrollDirection: Axis.horizontal,
@@ -369,14 +302,12 @@ class _SearchPageState extends State<SearchPage> {
                                             });
                                           },
                                           child: Container(
-                                            width: 160,
+                                            width: 150,
                                             margin: EdgeInsets.only(
-                                                left: 5, right: 5),
+                                                left: 10, right: 5),
                                             padding: EdgeInsets.only(
-                                                left: 30,
-                                                top: 10,
-                                                bottom: 10,
-                                                right: 30),
+                                                left: 20, top: 10,
+                                                bottom: 10, right: 20),
                                             decoration: BoxDecoration(
                                                 borderRadius:
                                                     BorderRadius.circular(42),
@@ -392,7 +323,7 @@ class _SearchPageState extends State<SearchPage> {
                                               btnlist[index],
                                               style: TextStyle(
                                                   fontSize:
-                                                      size.subtitleFontsize,
+                                                      size.contentFontSize,
                                                   fontWeight: FontWeight.w800,
                                                   color: (btncolor == index)
                                                       ? white
@@ -420,110 +351,140 @@ class _SearchPageState extends State<SearchPage> {
       child: Scaffold(
         body: Column(
           children: [
-            Container(
-              height: 240,
-              padding: EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    height: 10,
-                  ),
-                  ListTile(
-                    leading: IconButton(
-                      icon: Icon(
-                        Icons.arrow_back,
-                        color: themeController.isDarkMode.value ? white : black,
-                      ),
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                    ),
-                    title: Text(
-                      "Search",
-                      style: TextStyle(
-                          fontSize: size.titleFontsize,
-                          fontWeight: FontWeight.w500,
-                          color:
+            SafeArea(
+              child: Container(
+                height: 195,
+                padding: EdgeInsets.only(left: size.mediumPadding,right: size.mediumPadding),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+
+              
+                    Row(
+                      children: [
+                        GestureDetector(
+                              onTap: (){
+
+                              }  ,
+                            child: Icon(Icons.arrow_back,color:themeController.isDarkMode.value ? white : black,)),
+                        SizedBox(width: 20,),
+                        Text(
+                          "Search",
+                          style: TextStyle(
+                              fontSize: size.subtitleFontsize,
+                              fontWeight: FontWeight.w500,
+                              color:
                               themeController.isDarkMode.value ? white : black),
+                        ),
+                        SizedBox(width: 120,),
+                        Switch(
+                          value: isDarkMode,
+                          onChanged: (bool value) {
+                            setState(() {
+                              isDarkMode = value;
+                            });
+                            themeController.setThemeMode(value);
+                          },
+                        ),
+              
+                      ],
                     ),
-                    trailing: Switch(
-                      value: isDarkMode,
-                      onChanged: (bool value) {
-                        setState(() {
-                          isDarkMode = value;
-                        });
-                        themeController.setThemeMode(value);
-                      },
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(left: 20, right: 20),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        color: themeController.isDarkMode.value
-                            ? Colors.white
-                            : gray),
-                    child: TextFormField(
-                      decoration: InputDecoration(
-                          prefixIcon: Icon(Icons.search,
-                              color: themeController.isDarkMode.value
-                                  ? newprimaryColor
-                                  : newprimaryColor),
-                          hintText: "Search",
-                          hintStyle: TextStyle(
-                              color: themeController.isDarkMode.value
-                                  ? newprimaryColor
-                                  : newprimaryColor),
-                          border: InputBorder.none,
-                          suffixIcon: GestureDetector(
-                            child: Container(
-                              margin: EdgeInsets.all(5),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(12),
-                                  color: themeController.isDarkMode.value
-                                      ? newprimaryColor
-                                      : newprimaryColor),
-                              padding: EdgeInsets.all(7),
-                              child: Icon(
-                                Icons.medication_liquid,
-                                color: white,
+              
+                    // ListTile(
+                    //   leading: IconButton(
+                    //     icon: Icon(
+                    //       Icons.arrow_back,
+                    //       color: themeController.isDarkMode.value ? white : black,
+                    //     ),
+                    //     onPressed: () {
+                    //       Navigator.pop(context);
+                    //     },
+                    //   ),
+                    //   title: Text(
+                    //     "Search",
+                    //     style: TextStyle(
+                    //         fontSize: size.titleFontsize,
+                    //         fontWeight: FontWeight.w500,
+                    //         color:
+                    //             themeController.isDarkMode.value ? white : black),
+                    //   ),
+                    //   trailing: Switch(
+                    //     value: isDarkMode,
+                    //     onChanged: (bool value) {
+                    //       setState(() {
+                    //         isDarkMode = value;
+                    //       });
+                    //       themeController.setThemeMode(value);
+                    //     },
+                    //   ),
+                    // ),
+                    Container(
+                     // margin: EdgeInsets.only(left: 20, right: 20),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          color: themeController.isDarkMode.value
+                              ? Colors.white
+                              : gray),
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                            prefixIcon: Icon(Icons.search,
+                                color: themeController.isDarkMode.value
+                                    ? newprimaryColor
+                                    : newprimaryColor),
+                            hintText: "Search",
+                            hintStyle: TextStyle(
+                                color: themeController.isDarkMode.value
+                                    ? newprimaryColor
+                                    : newprimaryColor),
+                            border: InputBorder.none,
+                            suffixIcon: GestureDetector(
+                              child: Container(
+                                margin: EdgeInsets.all(5),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(12),
+                                    color: themeController.isDarkMode.value
+                                        ? newprimaryColor
+                                        : newprimaryColor),
+                                padding: EdgeInsets.all(7),
+                                child: Icon(
+                                  Icons.medication_liquid,
+                                  color: white,
+                                ),
                               ),
-                            ),
-                            onTap: () {
-                              bottom();
-                            },
-                          )),
+                              onTap: () {
+                                bottom();
+                              },
+                            )),
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  TabBar(
-                    labelColor: newprimaryColor,
-                    indicatorColor: newprimaryColor,
-                    unselectedLabelColor: Colors.black,
-                    dividerColor: Colors.transparent,
-                    tabs: [
-                      Tab(
-                        child: Text(
-                          "Course",
-                          style: TextStyle(
-                              fontSize: size.titleFontsize,
-                              color: newprimaryColor),
+              
+                    SizedBox(height: 5,),
+                    TabBar(
+                      labelColor: newprimaryColor,
+                      indicatorColor: newprimaryColor,
+                      unselectedLabelColor: Colors.black,
+                      dividerColor: Colors.transparent,
+                      tabs: [
+                        Tab(
+                          child: Text(
+                            "Course",
+                            style: TextStyle(
+                                fontSize: size.subtitleFontsize,
+                                color: newprimaryColor),
+                          ),
                         ),
-                      ),
-                      Tab(
-                        child: Text(
-                          "Mentors",
-                          style: TextStyle(
-                              fontSize: size.titleFontsize,
-                              color: newprimaryColor),
+                        Tab(
+                          child: Text(
+                            "Mentors",
+                            style: TextStyle(
+                                fontSize: size.subtitleFontsize,
+                                color: newprimaryColor),
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                ],
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
             // TabBarView Section
@@ -531,52 +492,78 @@ class _SearchPageState extends State<SearchPage> {
               child: TabBarView(
                 children: [
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    padding: const EdgeInsets.symmetric(horizontal: 0),
                     child: SingleChildScrollView(
                       child: Column(
                         children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Results for Design",
-                                style: TextStyle(
-                                  fontSize: size.titleFontsize,
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10,right: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Results for Design",
+                                  style: TextStyle(
+                                    fontSize: size.contentFontSize,
+                                      color: themeController.isDarkMode.value
+                                          ? white
+                                          : black
+                                  ),
                                 ),
-                              ),
-                              Text(
-                                "153 Results Found",
-                                style: TextStyle(
-                                    color: themeController.isDarkMode.value
-                                        ? Colors.white
-                                        : gold),
-                              ),
-                            ],
+                                Text(
+                                  "153 Results Found",
+                                  style: TextStyle(
+                                      fontSize: size.contentFontSize,
+                                      color: themeController.isDarkMode.value
+                                          ? Colors.white
+                                          : gold),
+                                ),
+                              ],
+                            ),
                           ),
-                          TabbarCustom(),
+
+                          PopularCourseWidget(direction: Axis.vertical, hight: 700,),
+
                         ],
                       ),
                     ), // Custom widget for Courses tab
                   ),
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    padding: const EdgeInsets.symmetric(horizontal: 0),
                     child: SingleChildScrollView(
                       child: Column(
                         children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Results for Design",
-                                style: TextStyle(fontSize: size.titleFontsize),
-                              ),
-                              Text(
-                                "153 Results Found",
-                                style: TextStyle(color: gold),
-                              ),
-                            ],
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10,right: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Results for Design",
+                                  style: TextStyle(
+                                      fontSize: size.contentFontSize,
+                                      color: themeController.isDarkMode.value
+                                          ? white
+                                          : black
+                                  ),
+                                ),
+                                Text(
+                                  "153 Results Found",
+                                  style: TextStyle(
+                                      fontSize: size.contentFontSize,
+                                      color: themeController.isDarkMode.value
+                                          ? Colors.white
+                                          : gold),
+                                ),
+                              ],
+                            ),
                           ),
-                          ItemTabbarList(),
+
+                          MentorItemList(
+                            items: listclassitem,
+                          ),
+
+                          SizedBox(height:100 ,)
                         ],
                       ),
                     ), // Custom widget for Mentors tab

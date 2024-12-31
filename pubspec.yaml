@@ -38,10 +38,18 @@ dependencies:
   carousel_slider: ^5.0.0
   device_preview:
   percent_indicator:
+  phone_form_field:
+  lottie:
   get: ^4.6.6
+
   intl_phone_field:
   image_picker:
   lottie:
+
+  shared_preferences: ^2.2.3
+  introduction_screen:
+  motion_tab_bar_v2:
+
 
 dev_dependencies:
   flutter_test:
