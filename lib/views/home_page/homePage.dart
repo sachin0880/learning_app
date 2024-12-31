@@ -64,7 +64,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     backgroundColor: oldwhite,
+     backgroundColor: Colors.black,
       appBar: AppBar( surfaceTintColor: Colors.transparent,
         leading: Image(image: AssetImage('assets/images/menuicons.png'),),
         title: Row(

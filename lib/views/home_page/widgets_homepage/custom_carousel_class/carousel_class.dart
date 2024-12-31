@@ -8,10 +8,16 @@ class CarouselClasss{
   final String Text2;
   final String Text3;
   final String Text4;
-  CarouselClasss(this.img, this.Text1, this.Text2, this.Text3, this.Text4, this.img2, this.img3, this.img4);
+  CarouselClasss(
+      this.img,
+      this.Text1,
+      this.Text2,
+      this.Text3,
+      this.Text4,
+      this.img2,
+      this.img3,
+      this.img4);
 }
-
-
 class listcustomeClasss {
   final String img;
   final String img2;
